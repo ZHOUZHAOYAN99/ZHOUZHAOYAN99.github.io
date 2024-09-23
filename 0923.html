@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            text-align: center;
+        }
+
+        header {
+            height: 250px;
+            font-size: larger;
+            background-color: lightskyblue;
+        }
+
+        main {
+            height: 400px;
+            font-size: medium;
+            background-color: pink;
+        }
+
+        button {
+            width: 90px;
+            height: 60px;
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        CET6-我的项目
+    </header>
+    <main>
+        <p id="en"></p>
+        <p id="pr"></p>
+        <p id="cn"></p>
+    </main>
+    <button id="loadCet">读入单词</button>
+    <button id="randWord">随机单词</button>
+    <footer>江西科技师范大学周照焱-1402</footer>
+    <script>
+        let strCet6 = "a\t/ei/\tart.一(个);每一(个);(同类事物中)任一个\r\nabandon\t/ə'bændən/\tvt.离弃,丢弃;遗弃,抛弃;放弃\r\nabdomen\t/æb'dəumen/\tn.腹,下腹(胸部到腿部的部分)\r\nabatement\t/ə'beitmənt/\tn.减(免)税,打折扣,冲销\r\nabide\t/ə'baid/\tvi.(abode,abided)(by)遵守;坚持;vt.忍受,容忍\r\n...";
+        let cet6String = '';
+        let loadCet = select('button#loadCet');
+        let randWord = select('#randWord');
+        loadCet.onclick = function () {
+            cet6String = strCet6;
+            console.log("单词已加载");
+        };
+        randWord.addEventListener('click', function () {
+            if (cet6String.length === 0) {
+                alert('你要先读入单词');
+            } else {
+                let arr = cet6String.split('\r\n');
+                let rand = Math.floor(Math.random() * arr.length);
+                let str = arr[rand];
+                let begin = str.indexOf('\t');
+                let end = str.lastIndexOf('\t');
+                let en = str.slice(0, begin);
+                let pr = str.slice(begin + 1, end);
+                let cn = str.slice(end + 1);
+                select('p#en').innerHTML = en;
+                select('p#pr').textContent = pr;
+                select('p#cn').textContent = cn;
+            }
+        });
+        function select(selector) {
+            return document.querySelector(selector);
+        }
+    </script>
+</body>
+</html>
