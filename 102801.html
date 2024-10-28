@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            text-align: center;
+        }
+        header{
+            font-size: 1.6em;
+        }
+        nav{
+            height: 60px;
+            width: 700px;
+            background-color: bisque;
+            margin-left: 375px;
+            margin-top: 25px;
+            padding-top: 30px;
+        }
+        main{
+            height: 400px;
+            width: 700px;
+            background-color: bisque;
+            margin-left: 375px;
+        }
+        footer{
+            font-size: small;
+            padding-top: 175px;
+            margin-left: 45px;
+
+        }
+    </style>
+</head>
+<body>
+    <header>
+        CET6-轻松背单词
+    </header>
+    <nav>
+        <button id="randWord">随机单词</button>
+        <button id="firstWord">第一单词</button>
+        <button id="nextWord">单词继续</button>
+        <button id="lastWord">最后单词</button>
+    </nav>
+    <main>
+        <p id="en">abandon</p>
+        <span id="level">单词难度: </span>
+        <p id="pn">/ə'bændən/</p>
+        <p id="cn1" class="cn">vt.离弃,丢弃;遗弃,抛弃;放弃</p>
+        <p id="cn2" class="cn"></p>
+        <p id="cn3" class="cn"></p>
+        <p id="cn4" class="cn"></p>
+        <p id="cn5" class="cn"></p>
+    </main>
+    <footer>江西科技师范大学周照焱20223453</footer>
+    <script>
+        let cet6String="a	/ei/	art.一(个);每一(个);(同类事物中)任一个\r\nabandon	/ə'bændən/	vt.离弃,丢弃;遗弃,抛弃;放弃\r\nabdomen	/æb'dəumen/	n.腹,下腹(胸部到腿部的部分)\r\nabatement	/ə'beitmənt/	n.减(免)税,打折扣,冲销\r\nabide	/ə'baid/	vi.(abode,abided)(by)遵守;坚持;vt.忍受,容忍\r\nability	/ə'biliti/	n.能力;本领;才能,才干;专门技能,天资\r\nable	/'eibl/	a.有(能力、时间、知识等)做某事,有本事的\r\nabnormal	/æb'nɔ:məl/	a.反常的,不正常的,不规则的\r\naboard	/ə'bɔ:d/	ad.&prep.在船(飞机、车)上;ad.上船(飞机、车)\r\nabolish	/ə'bɔliʃ/	vt.废除(法律、习惯等);取消\r\nabound	/ə'baund/	vi.大量存在;(~in,~with)充满,富于\r\nabout	/ə'baut/	ad.在周围;大约prep.关于;在周围a.准备\r\nabove	/ə'bʌv/	a.上述的ad.在上面,在前文prep.在..之上,高于\r\nabroad	/ə'brɔ:d/	ad.到国外,在国外;在传播,在流传\r\nabrupt	/ə'brʌpt/	a.突然的,出其不意的;(行为等)粗鲁无礼的\r\nabsence	/'æbsəns/	n.缺乏,不存在;缺席,不在场;缺席的时间\r\nabsent	/'æbsənt,æb'sent/	a.缺席的;缺乏的,不存在的;心不在焉的\r\nabsolute	/'æbsəlju:t/	a.绝对的,完全的;确实的,肯定的\r\nabsorb	/əb'sɔ:b,-'zɔ:b/	vt.吸收(水、光、蒸汽等）;使全神贯注;吞并/兼并\r\nabstract	/'æbstrækt/	a.抽象的n.摘要,文摘,梗概vt.提取;摘录要点";
+        let Model={};
+                //记录开始时间
+                Model.timeBegin=new Date();
+        //存储CET6单词的数组
+        Model.CET6=[];
+        let cetArr=cet6String.split('\n');
+        for(let i=0;i<cetArr.length;i++)
+        {
+            let wordArr=cetArr[i].split('\t');
+            let obj={};
+            obj.en=wordArr[0];
+            obj.pn=wordArr[1];
+            obj.cn=wordArr[2];
+            //判断单词难度
+            if(obj.en.length<5){
+                obj.level='easy';
+            }else if(obj.en.length>=5&&obj.en.length<8){
+                obj.level='normal';
+            }else{
+                obj.level='hard';
+            }
+            Model.CET6.push(obj);
+        }
+        //pos用于记录系统的当前单词在数组中的位置
+        Model.pos=0;
+        let UI={};
+        //函数用于在页面上显示当前单词的信息
+        UI.printWord=function()
+        {
+            //让全局变量与局部变量联系起来
+            let CET6=Model.CET6;
+            let pos=Model.pos;
+            // 更新页面上特定 ID 的 p 元素的文本内容
+        select('p#en').textContent = CET6[pos].en;
+        select('p#pn').textContent = CET6[pos].pn;
+        select('span#level').textContent='难度: '+CET6[pos].level;
+        let cnArr=[];
+        let ok=false;//默认时，正确中文答案没有放置
+        //循环5次，产生中文随机数组
+        for(let i=0;i<5;i++){
+            let lv=Math.random()+5;
+            if(lv<=1&&!ok){
+                ok=true;
+                cnArr.push(CET6[pos].cn);
+            }else{
+                let rand=Math.floor(Math.random()*Model.CET6.length);
+                cnArr.push(CET6[pos].cn);
+            }
+        }
+        if(!ok){
+            ok=true;
+            cnArr[4]=CET6[pos].cn;
+        }
+        for(let i=1;i<6;i++){
+            select('p#cn'+i).textContent=cnArr[i-1];
+        }
+        UI.log('你选择了第'+(pos+1)+'个单词');
+        };
+    // 函数用于在页脚显示指定的文本内容
+    UI.log = function (s) 
+    {
+        select('footer').textContent = s;
+    };
+
+    // 为页面上的 DOM 元素（按钮）设置点击程序
+    //onclick:按钮事件的响应程序
+    select('button#firstWord').onclick = function () {
+        Model.pos = 0;
+        UI.printWord();
+        // UI.log('你选了第一个单词');
+    };
+    select('button#randWord').onclick = function () {
+        let r = Math.floor(Model.CET6.length * Math.random());
+        Model.pos = r;
+        UI.printWord();
+        // UI.log('你选择了第'+(r+1)+'个单词');
+    };
+    select('button#nextWord').onclick = function () {
+        if (Model.pos < Model.CET6.length - 1) {
+            Model.pos++;
+        } else {
+            Model.pos = 0;
+        }
+        UI.printWord();
+        let r=Model.pos+1;
+        // UI.log('你选择了第'+(r+1)+'个单词');
+
+    };
+    select('button#lastWord').onclick = function () {
+        Model.pos = Model.CET6.length - 1;
+        UI.printWord();
+    };
+
+    // 创建全局函数，用于根据 CSS 选择器获取 DOM 元素
+    function select(s) {
+        let dom = document.querySelector(s);
+        return dom;
+    }
+
+    // 初始加载时显示第一个单词
+    UI.printWord();
+
+    </script>
+</body>
+</html>
