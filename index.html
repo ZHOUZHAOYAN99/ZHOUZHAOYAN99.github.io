@@ -3,51 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        *{
-            text-align: center;
-        }
-        header{
-            background-color: lightskyblue;
-            height:200px;
-            font-size: large;
-        }
-        main{
-            background-color: pink;
-            height:500px;
-            font-size: large;
-        }
-    </style>
+    <title>CET6-轻松背单词</title>
+    <link rel="stylesheet" href="word.css">
 </head>
 <body>
     <header>
-        <div>Welcome to my Home</div>
+        CET6-轻松背单词
     </header>
+    <nav>
+        <button id="randWord">随机单词</button>
+        <button id="firstWord">第一单词</button>
+        <button id="nextWord">单词继续</button>
+        <button id="lastWord">最后单词</button>
+        <button id="checkButton">检查答案</button>
+        <button id="reviewButton">复习单词</button>
+    </nav>
     <main>
-        <div>My Content</div>
+        <p id="en">abandon</p>
+        <span id="level">单词难度: </span>
+        <p id="pn">/ə'bændən/</p>
+        <p style="color: blue;">请从以下选项中选择正确翻译！</p>
+        <p id="cn1" class="cn">选项一翻译</p>
+        <p id="cn2" class="cn">选项二翻译</p>
+        <p id="cn3" class="cn">选项三翻译</p>
+        <p id="cn4" class="cn">选项四翻译</p>
+        <p id="cn5" class="cn">选项五翻译</p>
+        <p id="answerMessage" style="float:right;"></p>
     </main>
-    <footer>
-        <div>my information</div>
-    </footer>
-    <script>
-        // document.body.style.height=innerHeight-18+'px';
-
-
-        let luckNo=Math.random();
-        let mainDom=document.querySelector("main");
-        mainDom.textContent="你的幸运数字："+luckNo;
-        console.log(luckNo);
-
-
-        console.log("渲染web页元素:"+(new Date()-bigBang)+"ms!");
-        let timer=new Date();
-        for(let i=1;i<=1e8;i++)
-        {
-        }
-        console.log("CPU从1数到1亿:"+(new Date()-timer)+"ms!");
-        let headerDom=document.querySelector("header");
-        headerDom.textContent="整个执行完毕，费时:"+(new Date()-bigBang)+'ms';
-    </script>
+    <div id="reviewWordsContainer"></div>
+    <footer>江西科技师范大学周照焱20223453</footer>
+    <script src="word.js"></script>
 </body>
 </html>
