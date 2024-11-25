@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复习已学单词</title>
+    <style>
+        *{
+            text-align: center;
+        }
+        body{
+            background-color: bisque;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>已学单词列表</h1>
+    <div id="reviewWordsList"></div>
+
+    <script>
+        //获取URL中的参数（已学单词数据）
+        function getQueryParam(param){
+            const urlParams=new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+        //解析并展示已学单词
+        function displayLearnedWords(){
+            let wordsParam=getQueryParam('words');
+            if(wordsParam){
+                let learnedWords=JSON.parse(decodeURIComponent(wordsParam));
+                let reviewWordsList=document.getElementById('reviewWordsList');
+                learnedWords.forEach(function(word){
+                    let wordObj=JSON.parse(word);
+                    let wordItem=document.createElement('p');
+                    wordItem.className='word-item';
+                    wordItem.textContent=wordObj.en+'-'+wordObj.cn;
+                    reviewWordsList.appendChild(wordItem);
+                }) 
+            }
+        }
+        //页面加载时调用函数显示已学单词
+        window.onload=function(){
+            displayLearnedWords();
+        }
+    </script>
+</body>
+</html>
