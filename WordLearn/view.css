@@ -1,0 +1,152 @@
+   *{
+        margin: 0;
+        box-sizing: border-box;
+        text-align: center;
+
+    }
+   body{
+     font-size: calc(10px+1vh);
+     height: 98vh ;    
+     position: relative;
+     background-color: rgb(246, 135, 154);
+    }
+    header{font-size: 2em;
+           height: 15% ;
+           position: relative;
+           background-color: black;
+           color:white
+    }
+    header p{
+        padding-top: 30px;
+    }
+    nav{ 
+        height: 6% ;
+        background-color: rgb(246, 135, 154);
+    }
+    nav button{
+        font-size: 1.2em;
+        color:white;
+        background-color: rgb(225, 85, 132);
+        border-radius: 5px;
+        margin: 10px;
+        
+       }
+    button.small{
+        width: 150px;
+        padding: 0.1em 0.2em;  
+    }
+    button{
+        display: inline;
+        border: none;
+        background-color: black;
+        color:greenyellow;
+    }
+    button:hover{
+        color:white;
+    }
+    button.big{
+        width: 150px;
+        padding: 0.1em 0.5em;  
+        
+    }
+    main{
+        margin-top: 50px;
+        font-size: 1.6em;
+        height: 60% ;
+        position: relative;
+    }
+    main p#en{
+        font-size: 1.6em;
+        color:lightblue;
+        text-shadow: 2px 2px gray ;
+    }
+    main p#pn{
+        font-size: 1.2em;
+        color:lightseagreen;
+       }
+    form{
+        position: absolute ;
+        width: 90% ;
+        height: 50% ;
+        border: 2px solid gray;
+        left: 5% ;
+        top: 10% ;
+        background-color: rgb(246, 135, 154);
+        font-size: 1.1em ;
+    }
+    h3{
+        color:white;
+    }
+    form p{
+        color: white;
+
+    }
+    form input{
+        font-size: 1.1em ;
+        width: 180px;
+        line-height: 30px;
+        margin: 20px;
+        border-radius: 5px;
+        border:2px solid white;
+    }
+    form button{
+        font-size: 20px ;
+        margin-right: 20px;
+        margin-top: 30px;
+        color:white;
+        background-color: rgb(225, 85, 132);
+        border-radius: 5px;
+        width:90px;
+        margin-left: 50px;
+    }
+    button:hover{
+        color:black;
+    }
+    footer{
+        height: 20% ;
+        font-size:1.2em;
+    }
+    span#level{
+        display: block;
+        position: absolute;
+        right:20px;
+        top:1px;
+        color:blue;
+        font-size: 0.5em;
+    }
+    p.cn{
+      border:2px solid white ;
+      background-color: white;
+      cursor: pointer;
+      font-size: 0.8em;
+      margin-bottom: 0.2em;
+      width:85%;
+      margin-left: 85px;
+      border-radius: 5px;
+      line-height: 40px;
+    }
+    p.cn.right{
+      background-color: yellow;
+      color: red ;
+    }
+    p.cn.wrong{
+      background-color: gray;
+      color:white;
+    }
+    p.cn:hover{
+        color: rgb(225, 85, 132) ;
+    }
+    header span#response{
+        font-size: 0.8em;
+        color: greenyellow;
+        position: absolute;
+        right: 0.5em;
+        top:2em;
+    }
+    p#log{
+        background-color: gray;
+        color: white;
+        font-size: 0.65em;
+        padding: 5px 10px;
+        text-align: center;
+    }
